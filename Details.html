@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="Detail.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <div class="canvas">
+        <div class="basicinfo">
+            <img id="profilePic" src="oiii.gif" alt="">
+            <h1 class="named" id="userName">Hi, My name is
+                Cory Bryant</h1>
+        </div>
+        <div class="info">
+            <h1>My Information are Given Below</h1>
+            <div class="informations">
+                <p id="email">email-address- cory.bryant@example.com</p>
+                <p id="birthday">birthday -2/2/1959</p>
+                <p id="address">address -3247 Dane St</p>
+                <p id="phone">phone -(892) 834-3175</p>
+                <p id="password">password -notnow</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const selectedUser = JSON.parse(localStorage.getItem('selectedUser'));
+            if (selectedUser) {
+                document.getElementById('userName').textContent = `Hi, My name is ${selectedUser.name.first} ${selectedUser.name.last}`;
+                document.getElementById('profilePic').src = selectedUser.picture.large;
+                document.getElementById('email').textContent = `Email: ${selectedUser.email}`;
+                document.getElementById('birthday').textContent = `Birthday: ${selectedUser.dob.date.split('T')[0]}`;
+                document.getElementById('address').textContent = `Address: ${selectedUser.location.street.number} ${selectedUser.location.street.name}`;
+                document.getElementById('phone').textContent = `Phone: ${selectedUser.phone}`;
+                document.getElementById('password').textContent = `password: ${selectedUser.login.password}`;
+            }
+        });
+    </script>
+</body>
+</html>
